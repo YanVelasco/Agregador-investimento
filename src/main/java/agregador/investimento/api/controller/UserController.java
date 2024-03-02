@@ -7,6 +7,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import agregador.investimento.api.dto.CreateUserDTO;
 import agregador.investimento.api.entity.UserEntity;
 import agregador.investimento.api.service.CreateUserService;
+import agregador.investimento.api.service.ListUserById;
 
 import java.util.UUID;
 
@@ -24,6 +25,9 @@ public class UserController {
 
     @Autowired
     private CreateUserService createUserService;
+
+    @Autowired
+    private ListUserById listUserById;
     
     @PostMapping()
     public ResponseEntity<UserEntity> createUser(@RequestBody CreateUserDTO createUserDTO, UriComponentsBuilder uriComponentsBuilder) {
@@ -34,7 +38,12 @@ public class UserController {
     
     @GetMapping("/{userId}")
     public ResponseEntity<UserEntity> getUserById(@PathVariable("userId") UUID userId) {
-        return null;
+        var user = listUserById.execute(userId);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
     
 
