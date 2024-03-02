@@ -9,7 +9,7 @@ import agregador.investimento.api.exceptions.UserAlreadyExists;
 import agregador.investimento.api.repository.UserRepository;
 
 @Service
-public class CreateUserService {
+public class CreateUser {
 
     @Autowired
     private UserRepository userRepository;
