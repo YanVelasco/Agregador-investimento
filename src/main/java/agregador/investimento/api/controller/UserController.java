@@ -7,6 +7,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import agregador.investimento.api.dto.CreateUserDTO;
 import agregador.investimento.api.entity.UserEntity;
 import agregador.investimento.api.service.CreateUserService;
+import agregador.investimento.api.service.DeleteUserById;
 import agregador.investimento.api.service.LisAllUsers;
 import agregador.investimento.api.service.ListUserById;
 
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +37,9 @@ public class UserController {
 
     @Autowired
     private LisAllUsers lisAllUsers;
+
+    @Autowired
+    private DeleteUserById deleteUserById;
     
     @PostMapping()
     public ResponseEntity<UserEntity> createUser(@RequestBody CreateUserDTO createUserDTO, UriComponentsBuilder uriComponentsBuilder) {
@@ -59,5 +64,9 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
     
-
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteById(@PathVariable("userId") String userId) {
+        deleteUserById.execute(userId);
+        return ResponseEntity.noContent().build();
+    }
 }
