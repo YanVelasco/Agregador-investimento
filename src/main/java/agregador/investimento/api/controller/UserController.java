@@ -9,7 +9,7 @@ import agregador.investimento.api.dto.UpdateUserDTO;
 import agregador.investimento.api.entity.UserEntity;
 import agregador.investimento.api.service.CreateUser;
 import agregador.investimento.api.service.DeleteUserById;
-import agregador.investimento.api.service.LisAllUsers;
+import agregador.investimento.api.service.ListAllUsers;
 import agregador.investimento.api.service.ListUserById;
 import agregador.investimento.api.service.UpdateUserById;
 
@@ -36,7 +36,7 @@ public class UserController {
     private ListUserById listUserById;
 
     @Autowired
-    private LisAllUsers lisAllUsers;
+    private ListAllUsers lisAllUsers;
 
     @Autowired
     private UpdateUserById updateUserById;
