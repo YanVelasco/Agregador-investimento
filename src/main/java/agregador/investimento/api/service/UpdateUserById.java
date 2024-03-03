@@ -15,6 +15,7 @@ public class UpdateUserById {
     @Autowired
     private UserRepository userRepository;
 
+    @SuppressWarnings("null")
     public UserEntity execute(String userId, UpdateUserDTO updateUserDTO) {
         var id = UUID.fromString(userId);
 

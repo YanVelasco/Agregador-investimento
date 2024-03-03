@@ -15,6 +15,7 @@ public class ListUserById {
     @Autowired
     private UserRepository userRepository;
 
+    @SuppressWarnings("null")
     public Optional<UserEntity> execute(UUID userId) {
         return userRepository.findById(userId);
     }

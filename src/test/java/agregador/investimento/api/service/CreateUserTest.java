@@ -17,7 +17,7 @@ import agregador.investimento.api.exceptions.UserAlreadyExists;
 import agregador.investimento.api.repository.UserRepository;
 
 @SpringBootTest
-public class CreateUserTest {
+class CreateUserTest {
 
     @Mock
     private UserRepository userRepository;
@@ -25,6 +25,7 @@ public class CreateUserTest {
     @InjectMocks
     private CreateUser createUser;
 
+    @SuppressWarnings("null")
     @Test
     @DisplayName("Should create a user with success")
     void testExecute() {
@@ -40,6 +41,7 @@ public class CreateUserTest {
         verify(userRepository, times(1)).save(any(UserEntity.class));
     }
 
+    @SuppressWarnings("null")
     @Test
     @DisplayName("Should throw UserAlreadyExists when trying to create a user with existing name or email")
     void testExecuteUserAlreadyExists() {
