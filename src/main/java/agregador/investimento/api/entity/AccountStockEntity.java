@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountStock {
+public class AccountStockEntity {
     
     @EmbeddedId
     private AccountStockId id;

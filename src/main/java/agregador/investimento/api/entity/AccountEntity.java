@@ -39,6 +39,6 @@ public class AccountEntity {
     private BillingAdressEntity billingAdress;
 
     @OneToMany(mappedBy = "account")
-    private List<AccountStock> stocks;
+    private List<AccountStockEntity> stocks;
 
 }
