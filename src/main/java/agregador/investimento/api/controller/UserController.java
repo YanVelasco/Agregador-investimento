@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import agregador.investimento.api.dto.AccountResponseDTO;
 import agregador.investimento.api.dto.CreateAccountDTO;
 import agregador.investimento.api.dto.CreateUserDTO;
 import agregador.investimento.api.dto.UpdateUserDTO;
@@ -11,6 +12,7 @@ import agregador.investimento.api.entity.UserEntity;
 import agregador.investimento.api.service.CreateAccounte;
 import agregador.investimento.api.service.CreateUser;
 import agregador.investimento.api.service.DeleteUserById;
+import agregador.investimento.api.service.ListAccounts;
 import agregador.investimento.api.service.ListAllUsers;
 import agregador.investimento.api.service.ListUserById;
 import agregador.investimento.api.service.UpdateUserById;
@@ -48,6 +50,10 @@ public class UserController {
 
     @Autowired
     private CreateAccounte createAccounte;
+
+
+    @Autowired
+    private ListAccounts listAccounts;
 
     @PostMapping()
     public ResponseEntity<UserEntity> createUser(@RequestBody CreateUserDTO createUserDTO,
@@ -96,6 +102,12 @@ public class UserController {
             @PathVariable("userId") String userId) {
         createAccounte.execute(userId, createAccountDTO);
         return ResponseEntity.ok().build();
+    }
+    
+    @GetMapping("/{userId}/accounts")
+    public ResponseEntity<List<AccountResponseDTO>> createAccount(@PathVariable("userId") String userId) {
+        var accounts = listAccounts.execute(UUID.fromString(userId));
+        return ResponseEntity.ok(accounts);
     }
 
 }
